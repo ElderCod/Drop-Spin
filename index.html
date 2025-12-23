@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drop & Spin - Plinko Slot Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Header -->
+        <header class="game-header">
+            <div class="logo">DROP & SPIN</div>
+            <div class="balance-display">
+                <span class="balance-label">BALANCE</span>
+                <span class="balance-amount">£<span id="balance">100.00</span></span>
+            </div>
+        </header>
+
+        <!-- Plinko Screen (Top) -->
+        <section class="plinko-screen">
+            <div class="screen-title">DROP ZONE</div>
+            <canvas id="plinkoCanvas"></canvas>
+            <div class="pocket-labels">
+                <div class="pocket-label bonus">BONUS</div>
+                <div class="pocket-label">5 SPINS</div>
+                <div class="pocket-label">3 SPINS</div>
+                <div class="pocket-label">2 SPINS</div>
+                <div class="pocket-label">1 SPIN</div>
+                <div class="pocket-label">2 SPINS</div>
+                <div class="pocket-label">3 SPINS</div>
+                <div class="pocket-label">5 SPINS</div>
+                <div class="pocket-label bonus">BONUS</div>
+            </div>
+        </section>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-message" id="statusMessage">Press DROP BALL to begin!</div>
+            <div class="modifier-display" id="modifierDisplay"></div>
+            <div class="spins-remaining" id="spinsRemaining" style="display: none;">
+                <span class="spins-label">SPINS:</span>
+                <span class="spins-count" id="spinsCount">0</span>
+            </div>
+        </div>
+
+        <!-- Reels Screen (Bottom) -->
+        <section class="reels-screen">
+            <div class="screen-title">REWARD REELS</div>
+            <div class="bonus-banner" id="bonusBanner" style="display: none;">
+                🎰 BONUS MODE - 2x ALL WINS! 🎰
+            </div>
+            <div class="reels-container" id="reelsContainer">
+                <div class="reel" data-reel="0">
+                    <div class="symbol" data-row="0">❓</div>
+                    <div class="symbol" data-row="1">❓</div>
+                    <div class="symbol" data-row="2">❓</div>
+                </div>
+                <div class="reel" data-reel="1">
+                    <div class="symbol" data-row="0">❓</div>
+                    <div class="symbol" data-row="1">❓</div>
+                    <div class="symbol" data-row="2">❓</div>
+                </div>
+                <div class="reel" data-reel="2">
+                    <div class="symbol" data-row="0">❓</div>
+                    <div class="symbol" data-row="1">❓</div>
+                    <div class="symbol" data-row="2">❓</div>
+                </div>
+                <div class="reel" data-reel="3">
+                    <div class="symbol" data-row="0">❓</div>
+                    <div class="symbol" data-row="1">❓</div>
+                    <div class="symbol" data-row="2">❓</div>
+                </div>
+                <div class="reel" data-reel="4">
+                    <div class="symbol" data-row="0">❓</div>
+                    <div class="symbol" data-row="1">❓</div>
+                    <div class="symbol" data-row="2">❓</div>
+                </div>
+            </div>
+            <div class="win-display" id="winDisplay" style="display: none;">
+                WIN: £<span id="winAmount">0.00</span>
+            </div>
+        </section>
+
+        <!-- Controls -->
+        <section class="controls">
+            <div class="bet-controls">
+                <label>BET AMOUNT</label>
+                <div class="bet-buttons">
+                    <button class="bet-btn" data-bet="0.10">10p</button>
+                    <button class="bet-btn active" data-bet="0.20">20p</button>
+                    <button class="bet-btn" data-bet="0.50">50p</button>
+                    <button class="bet-btn" data-bet="1.00">£1</button>
+                    <button class="bet-btn" data-bet="2.00">£2</button>
+                </div>
+            </div>
+            <button class="drop-button" id="dropButton">
+                <span class="drop-icon">⬇</span>
+                <span class="drop-text">DROP BALL</span>
+            </button>
+        </section>
+
+        <!-- Footer -->
+        <footer class="game-footer">
+            <div class="info-text">10 Paylines • RTP 96%</div>
+        </footer>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
