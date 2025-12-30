@@ -27,9 +27,6 @@ body {
 .game-container {
     max-width: 800px;
     width: 100%;
-    height: 800px;
-    min-height: 800px;
-    max-height: 800px;
     background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
     border-radius: 20px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -41,9 +38,8 @@ body {
 /* Header */
 .game-header {
     background: linear-gradient(90deg, #0f3460 0%, #533483 100%);
-    flex: 0 0 60px;
-    flex-grow: 0;
-    lay: flex;
+    padding: 15px 20px;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 3px solid #e94560;
@@ -86,39 +82,30 @@ body {
     letter-spacing: 3px;
     background: rgba(233, 69, 96, 0.1);
     border-bottom: 2px solid rgba(233, 69, 96, 0.3);
-    flex: 0 0 35px;
-    flex-grow: 0;
-    flex-shrink: 0;
-    min-height: 35px;
-    screen {
-    flex: 0 0 300px;
-    flex-grow: 0;
-    flex-shrink: 0;
-    min-height: 300px;
-    max-height: 300px;
+}
+
+/* Plinko Screen */
+.plinko-screen {
+    background: linear-gradient(180deg, #0f3460 0%, #16213e 100%);
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
     position: relative;
     z-index: 1;
-    background: linear-gradient(180deg, #0f3460 0%, #16213e 100%);
     padding: 0;
 }
 
 #plinkoCanvas {
     display: block;
     width: 100%;
-    ing: 6px;
+    height: 300px;
     background: #0a0a0a;
-    flex: 0 0 45px;
-    flex-grow: 0;
-    flex-shrink: 0;
-    min-height: 45px;
-    max-height: 45px;
+}
+
+.pocket-labels {
+    display: flex;
+    justify-content: space-around;
+    padding: 6px;
+    background: #0a0a0a;
 }
 
 .pocket-label {
@@ -131,7 +118,10 @@ body {
     border: 2px solid rgba(78, 204, 163, 0.3);
     border-radius: 8px;
     text-transform: uppercase;
-}er-color: #e94560;
+}
+
+.pocket-label.bonus {
+    border-color: #e94560;
     color: #e94560;
     font-weight: bold;
     animation: pulse 2s ease-in-out infinite;
@@ -151,11 +141,6 @@ body {
     background: #0a0a0a;
     padding: 10px 20px;
     display: flex;
-    flex: 0 0 50px;
-    flex-grow: 0;
-    flex-shrink: 0;
-    min-height: 50px;
-    max-height: 50px;
     justify-content: space-between;
     align-items: center;
     gap: 15px;
@@ -172,7 +157,10 @@ body {
 }
 
 .spins-remaining {
-    
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
 .spins-label {
     color: #aaa;
@@ -248,447 +236,291 @@ body {
 /* Reels Screen */
 .reels-screen {
     background: linear-gradient(180deg, #16213e 0%, #1a1a2e 100%);
-    padding: 0;
-    position: relative;
-    flex: 0 0 180px;
-    flex-grow: 0;
-    flex-shrink: 0;
-    min-height: 180px;
-    max-height: 180px;
     display: flex;
     flex-direction: column;
-    overflow: visible;
+    position: relative;
     z-index: 1;
+    padding: 0;
 }
 
 .bonus-banner {
-    background: linear-gradient(90deg, #e94560 0%, #ff6b9d 50%, #e94560 100%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #e94560 0%, #ff6b9d 100%);
     color: white;
-    text-align: center;
-    padding: 12px;
+    padding: 20px 40px;
+    border-radius: 15px;
+    font-size: 32px;
     font-weight: bold;
-    font-size: 18px;
-    animation: bonusGlow 1s ease-in-out infinite;
-    flex: 0 0 auto;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(233, 69, 96, 0.8);
+    border: 4px solid white;
+    z-index: 100;
+    animation: bonusAppear 0.5s ease;
 }
 
-@keyframes bonusGlow {
-    box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.6);
+@keyframes bonusAppear {
+    from {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
     }
 }
 
 .reels-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-    padding: 30px 20px;
+    gap: 8px;
+    padding: 20px;
     background: rgba(0, 0, 0, 0.3);
-    flex: 0 0 auto;
 }
 
 .reel {
-    background: linear-gradient(180deg, #0f3460 0%, #1a1a2e 100%);
-    border: 3px solid #533483;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: linear-gradient(180deg, #0f3460 0%, #0a0a0a 100%);
+    border: 3px solid #e94560;
     border-radius: 10px;
-    padding: 8px;
+    padding: 10px;
     box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .symbol {
-    aspect-ratio: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
-    background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
-    border: 2px solid rgba(78, 204, 163, 0.3);
+    font-size: 36px;
+    text-align: center;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 8px;
-    margin: 4px 0;
-    transition: all 0.3s ease;
+    transition: transform 0.1s ease;
 }
 
-.symbol.spinning {
-    animation: spin 0.1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: translateY(0); opacity: 1; }
-    50% { transform: translateY(-10px); opacity: 0.5; }
-    100% { transform: translateY(0); opacity: 1; }
-}
-
-.symbol.winning {
-    animation: winPulse 0.5s ease-in-out 3;
-    border-color: #e94560;
+.symbol.highlight {
+    background: rgba(233, 69, 96, 0.3);
+    transform: scale(1.1);
     box-shadow: 0 0 20px rgba(233, 69, 96, 0.8);
 }
 
-@keyframes winPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
-
 .win-display {
-    background: linear-gradient(90deg, #4ecca3 0%, #44c793 100%);
-    color: white;
     text-align: center;
-    padding: 20px;
-    font-size: 28px;
+    padding: 15px;
+    font-size: 18px;
     font-weight: bold;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    animation: slideDown 0.3s ease-out;
-    flex: 0 0 auto;
+    color: #4ecca3;
+    background: rgba(78, 204, 163, 0.1);
+    border-top: 2px solid rgba(78, 204, 163, 0.3);
 }
 
-@keyframes slideDown {
-    from {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+.win-amount {
+    font-size: 28px;
+    color: #4ecca3;
+    text-shadow: 0 0 10px rgba(78, 204, 163, 0.8);
 }
 
-    flex: 0 0 auto;
-    min-height: 180px;
-    position: relative;
-    z-index: 1;
 /* Controls */
 .controls {
     background: #0a0a0a;
-    padding: 15px;
+    padding: 20px;
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    flex: 0 0 140px;
-    flex-grow: 0;
-    flex-shrink: 0;
-    min-height: 140px;
-    max-height: 140px;
-    position: relative;
-    z-index: 10;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-top: 2px solid #e94560;
+    flex-wrap: wrap;
 }
 
 .bet-controls {
-    text-align: center;
-}
-
-.bet-controls label {
-    display: block;
-    font-size: 12px;
-    color: #aaa;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.bet-buttons {
-    display: flex;
-    gap: 8px;
-     {
-    padding: 10px 16px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #fff;
-    background: linear-gradient(135deg, #0f3460 0%, #533483 100%);
-    border: 2px solid #533483;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.bet-btn:hover {
-    background: linear-gradient(135deg, #533483 0%, #0f3460 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(83, 52, 131, 0.5);
-}
-
-.bet-btn.active {
-    background: linear-gradient(135deg, #e94560 0%, #ff6b9d 100%);
-    border-color: #e94560;
-    box-shadow: 0 0 20px rgba(233, 69, 96, 0.6);
-}
-
-.drop-button {
-    padding: 20px;
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    background: linear-gradient(135deg, #4ecca3 0%, #44c793 100%);
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 20px rgba(78, 204, 163, 0.4);
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 10px;
 }
 
-.drop-button:hover:not(:disabled) {
-    background: linear-gradient(135deg, #44c793 0%, #4ecca3 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(78, 204, 163, 0.6);
+.bet-label {
+    color: #aaa;
+    font-size: 14px;
+    font-weight: bold;
 }
 
-.drop-button:active:not(:disabled) {
+.bet-amount {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4ecca3;
+    min-width: 60px;
+    text-align: center;
+}
+
+.btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-bet {
+    background: linear-gradient(135deg, #4ecca3 0%, #44c793 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(78, 204, 163, 0.4);
+}
+
+.btn-bet:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(78, 204, 163, 0.6);
+}
+
+.btn-bet:active {
     transform: translateY(0);
 }
 
-.drop-button:disabled {
-    background: linear-gradient(135deg, #333 0%, #555 100%);
-    cursor: not-allowed;
+.btn-drop {
+    background: linear-gradient(135deg, #e94560 0%, #ff6b9d 100%);
+    color: white;
+    padding: 15px 40px;
+    font-size: 18px;
+    box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+}
+
+.btn-drop:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(233, 69, 96, 0.6);
+}
+
+.btn-drop:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn-drop:disabled {
     opacity: 0.5;
-    box-shadow: none;
-}
-
-.drop-icon {
-    font-size: 24px;
-    animation: bounce 2s ease-in-out infinite;
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
+    cursor: not-allowed;
 }
 
 /* Footer */
 .game-footer {
     background: #0a0a0a;
-    padding: 10px;
+    padding: 15px;
     text-align: center;
-    border-top: 2px solid #533483;
-    flex: 0 0 35px;
-    flex-grow: 0;
-    flex-shrink: 0;
-    min-height: 35px;
-    max-height: 35px;
+    color: #666;
+    font-size: 12px;
+    border-top: 2px solid #e94560;
 }
-    background: #0a0a0a;
-    padding: 12px;
-    body {
-        padding: 0;
-        overflow: hidden;
-    }
 
+/* Responsive Design */
+@media (max-width: 768px) {
     .game-container {
         border-radius: 0;
-        max-width: 100vw;
-        height: 100vh;
-        max-height: 100vh;
-    }
-
-    /* Header - Fixed size */
-    .game-header {
-        flex: 0 0 60px !important;
-        min-height: 60px !important;
-        max-height: 60px !important;
-        flex-shrink: 0 !important;
-        padding: 10px 15px;
-    }
-
-    ance-amount {
-        font-size: 16px;
-    }
-
-    /* Plinko Screen - Flexible with max-height cap */
-    .plinko-screen {
-        flex: 35 1 0% !important;
-        max-height: 42vh !important;
-        min-height: 250px !important;
-        flex-shrink: 1 !important;
-        overflow: hidden;
-    }
-
-    #plinkoCanvas {
         width: 100%;
-        height: 250px;
-    }
-
-    /* Extra small phones - slightly smaller elements */
-    .game-header {
-        flex: 0 0 55px !important;
-        min-height: 55px !important;
-        max-height: 55px !important;
+        max-width: 100%;
     }
 
     .logo {
-        font-size: 16px;
-    }
-
-    .balance-amount {
-        font-size: 14px;
-    }
-
-    .pocket-label {
-        font-size: 7px;
-        padding: 3px 1px;
-    }
-
-    .symbol {
-        font-size: 18px;
-    }
-
-    .reels-container {
-        gap: 3px;
-        padding: 12px 8px;
-    }
-
-    .reel {
-        padding: 2px;
-    }
-
-    .bonus-banner {
-        font-size: 12px;
-        padding: 6px;
-    }
-
-    .win-display {
-        font-size: 16px;
-        padding: 10px;
-    }
-
-    .controls {
-        flex: 0 0 130px !important;
-        min-height: 130px !important;
-        max-height: 130px !important;
-    }
-
-    .drop-button {
-        padding: 10px;
-        font-size: 14px;
-    }
-
-    .bet-btn {
-        padding: 5px 8px;
-        font-size: 10
-
-    .reels-container {
-        gap: 4px;
-        padding: 15px 10px;
-        flex: 1;
-    }
-
-    .reel {
-        padding: 3px;
-    }
-
-    .symbol {
         font-size: 20px;
     }
 
-    .bonus-banner {
-        font-size: 14px;
-        padding: 8px;
-    }
-
-    .win-display {
+    .balance-amount {
         font-size: 18px;
-        padding: 12px;
     }
 
-    /* Controls - Fixed size */
+    #plinkoCanvas {
+        height: 250px;
+    }
+
+    .pocket-label {
+        font-size: 9px;
+        padding: 6px 2px;
+    }
+
+    .symbol {
+        font-size: 28px;
+        padding: 6px;
+    }
+
     .controls {
-        flex: 0 0 140px !important;
-        min-height: 140px !important;
-        max-height: 140px !important;
-        flex-shrink: 0 !important;
-        padding: 12px;
-        gap: 12px;
-        z-index: 1;
-        position: relative;
+        padding: 15px;
+        gap: 10px;
     }
 
-    .bet-controls label {
-        font-size: 10px;
-        margin-bottom: 6px;
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
     }
 
-    .bet-buttons {
-        gap: 6px;
+    .btn-drop {
+        padding: 12px 30px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 0;
     }
 
-    .bet-btn {
-        padding: 6px 10px;
-        font-size: 11px;
+    .game-header {
+        padding: 10px 15px;
     }
 
-    .drop-button {
-        padding: 12px;
+    .logo {
+        font-size: 18px;
+    }
+
+    .balance-amount {
         font-size: 16px;
     }
 
-    /* Footer - Fixed size */
-    .game-footer {
-        flex: 0 0 35px !important;
-        min-height: 35px !important;
-        max-height: 35px !important;
-        flex-shrink: 0 !important;
+    #plinkoCanvas {
+        height: 200px;
+    }
+
+    .pocket-label {
+        font-size: 8px;
+        padding: 4px 2px;
+    }
+
+    .reels-container {
+        gap: 6px;
+        padding: 15px;
+    }
+
+    .reel {
         padding: 8px;
+        gap: 4px;
     }
 
-    .info-text {
-        font-size: 10px;
+    .symbol {
+        font-size: 24px;
+        padding: 4px;
     }
 
-    .modifier-alert {
-        font-size: 18px;
-        padding: 20px 30
-        padding: 16px;
-        font-size: 18px;
+    .controls {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+
+    .btn-drop {
+        padding: 10px 25px;
+        font-size: 14px;
     }
 
     .status-message {
         font-size: 14px;
     }
 
-    .bet-btn {
-        padding: 8px 12px;
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 480px) {
-    .logo {
-        font-size: 18px;
-    }
-
-    .balance-amount {
-        font-size: 16px;
-    }
-
-    #plinkoCanvas {
-        height: 250px;
-    }
-
-    .pocket-label {
-        font-size: 8px;
-        padding: 5px 1px;
-    }
-
-    .symbol {
-        font-size: 20px;
-    }
-
-    .reels-container {
-        gap: 6px;
-        padding: 20px 10px;
-    }
-
-    .reel {
-        padding: 4px;
-    }
-
     .bonus-banner {
-        font-size: 14px;
-        padding: 8px;
-    }
-
-    .win-display {
-        font-size: 20px;
-        padding: 15px;
+        font-size: 24px;
+        padding: 15px 30px;
     }
 }
