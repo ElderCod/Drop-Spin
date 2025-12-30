@@ -40,8 +40,9 @@ body {
 /* Header */
 .game-header {
     background: linear-gradient(90deg, #0f3460 0%, #533483 100%);
-    flex: 0 0 auto;
+    flex: 0 0 70px;
     min-height: 70px;
+    max-height: 70px;
     padding: 20px;
     display: flex;
     justify-content: space-between;
@@ -86,6 +87,7 @@ body {
     letter-spacing: 3px;
     background: rgba(233, 69, 96, 0.1);
     border-bottom: 2px solid rgba(233, 69, 96, 0.3);
+    flex: 0 0 auto;
 }
 
 /* Plinko Screen */
@@ -116,6 +118,7 @@ body {
     gap: 2px;
     padding: 10px;
     background: #0a0a0a;
+    flex: 0 0 auto;
 }
 
 .pocket-label {
